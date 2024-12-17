@@ -1,11 +1,13 @@
 {
   "name": "Better ASCII Cam Video Web App",
   "short_name": "Better ASCII",
-  "description": "An ASCII Cam Web App for converting webcam to vintage text video.",
-  "start_url": "/apps/better-ascii/",
+  "description": "An ASCII Cam Web App for converting your webcam to retro PC text and save selfies in various formats.",
+  "start_url": "./",
+  "scope": "./",
+  "id": "betterascii?ver=beta1.0&track=preview&level=free",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#000000",
+  "theme_color": "#FFFFFF",
   "orientation": "portrait",
   "icons": [
     {

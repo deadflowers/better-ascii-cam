@@ -233,3 +233,66 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+
+// install button stuff
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("PWA Install Script Loaded");
+
+  let installPrompt = null;
+  const installButton = document.querySelector("#install");
+
+  if (!installButton) {
+    console.error("Install button (#install) not found in the DOM.");
+    return;
+  }
+
+  // Listen for the beforeinstallprompt event
+  window.addEventListener("beforeinstallprompt", (event) => {
+    console.log("beforeinstallprompt event fired");
+    event.preventDefault(); // Prevent the default mini-infobar
+    installPrompt = event; // Save the event for triggering later
+    installButton.removeAttribute("hidden"); 
+    installButton.style.display = "block"; 
+  });
+
+  // Add click listener to the install button
+  installButton.addEventListener("click", async () => {
+    console.log("Install button clicked");
+    if (!installPrompt) {
+      console.warn("Install prompt event is not available.");
+      return;
+    }
+
+    try {
+      // Trigger the install prompt
+      const result = await installPrompt.prompt();
+      console.log(`Install prompt outcome: ${result.outcome}`);
+
+      // Check the outcome of the prompt
+      if (result.outcome === "accepted") {
+        console.log("User accepted the PWA installation.");
+      } else {
+        console.log("User dismissed the PWA installation.");
+      }
+    } catch (error) {
+      console.error("Error during install prompt:", error);
+    } finally {
+      // Disable the in-app install prompt after the event
+      disableInAppInstallPrompt();
+    }
+  });
+
+  // Function to disable the in-app install prompt
+  function disableInAppInstallPrompt() {
+    installPrompt = null; // Clear the saved event
+    installButton.setAttribute("hidden", ""); 
+    installButton.style.display = "none"; 
+    console.log("Install button disabled after interaction.");
+  }
+
+  // Optional: Notify if the browser does not support the beforeinstallprompt event
+  if (!("onbeforeinstallprompt" in window)) {
+    console.warn("This browser does not support the 'beforeinstallprompt' event.");
+  }
+});
