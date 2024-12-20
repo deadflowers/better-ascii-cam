@@ -99,16 +99,52 @@
           asciiVideo.classList.remove("color-cycling-bg");
         }
       });
-      document.getElementById("save-ascii").addEventListener("click", function() {
-        const text = asciiVideo.textContent;
-        const blob = new Blob([text], {
-          type: "text/plain"
-        });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "ascii-snapshot.txt";
-        link.click();
-      });
+document.getElementById("save-ascii").addEventListener("click", function () {
+  const snapshotScaleWidth = 80; // Adjusted width for the snapshot
+  const snapshotCanvas = document.createElement("canvas");
+  const snapshotCtx = snapshotCanvas.getContext("2d");
+  
+  // Set scaled dimensions for snapshot
+  snapshotCanvas.width = snapshotScaleWidth;
+  snapshotCanvas.height =
+    videoElement.videoHeight / (videoElement.videoWidth / snapshotScaleWidth);
+  
+  // Draw the scaled video frame
+  snapshotCtx.drawImage(
+    videoElement,
+    0,
+    0,
+    snapshotCanvas.width,
+    snapshotCanvas.height
+  );
+  
+  // Generate ASCII from scaled snapshot
+  const imageData = snapshotCtx.getImageData(
+    0,
+    0,
+    snapshotCanvas.width,
+    snapshotCanvas.height
+  ).data;
+  let ascii = "";
+  const brightness = parseInt(document.getElementById("brightness").value, 10);
+  for (let i = 0; i < imageData.length; i += 4) {
+    const r = imageData[i];
+    const g = imageData[i + 1];
+    const b = imageData[i + 2];
+    const char = getBrightnessAdjustedChar(r, g, b, brightness);
+    ascii += char;
+    if ((i / 4 + 1) % snapshotCanvas.width === 0) {
+      ascii += "\n";
+    }
+  }
+  
+  // Save ASCII to file
+  const blob = new Blob([ascii], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "ascii-snapshot.txt";
+  link.click();
+});
       document.getElementById("save-image").addEventListener("click", function() {
         html2canvas(asciiVideo).then((canvas) => {
           const link = document.createElement("a");
