@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow"> 
@@ -46,6 +46,8 @@
   <!-- App URLs (for link previews, Google indexing, etc.) -->
   <link rel="canonical" href="https://raykooyenga.com/apps/better-ascii/">
   <link rel="alternate" href="https://rkooyenga.github.io/better-ascii-cam" hreflang="en-US">
+  <link rel="alternate" href="https://codepen.io/deadflowers/full/jENbVxN" hreflang="en-US">
+  <link rel="alternate" href="https://codepen.io/deadflowers/full/ZYzOYjr" hreflang="en-US">
 
   <!-- JSON-LD structured data for rich search results (optional but recommended for better indexing) -->
   <script type="application/ld+json">
@@ -68,103 +70,103 @@
   <title>Better ASCII Cam Video Web App | Convert Webcam to Retro Computer Text</title>
 </head>
 
-<body>
-  <video class="original-video"></video>
-  <canvas class="scaled-video"></canvas>
-  <div class="ascii-video"></div>
+  <body>
+    <video class="original-video"></video>
+    <canvas class="scaled-video"></canvas>
+    <div class="ascii-video"></div>
 
-  <div class="top-bar">
-    <div class="top-bar-controls">
-      <div class="control">
-        <label for="font-size">Font Size/Zoom</label>
-        <input type="range" id="font-size" min="4" max="24" value="12">
-      </div>
-      <div class="control">
-        <label for="foreground-color">Foreground</label>
-        <select id="foreground-color">
-          <option selected value="#FFFFFF">White</option>
-          <option value="#000000">Black</option>
-          <option value="#800000">Maroon</option>
-          <option value="#008000">Green</option>
-          <option value="#808000">Olive</option>
-          <option value="#000080">Navy</option>
-          <option value="#800080">Purple</option>
-          <option value="#008080">Teal</option>
-          <option value="#808080">Gray</option>
-          <option value="#C0C0C0">Silver</option>
-          <option value="#FF0000">Red</option>
-          <option value="#00FF00">Lime</option>
-          <option value="#FFFF00">Yellow</option>
-          <option value="#0000FF">Blue</option>
-          <option value="#FF00FF">Fuchsia</option>
-          <option value="#00FFFF">Aqua</option>
-        </select>
-      </div>
-      <div class="control">
-        <label for="background-color">Background</label>
-        <select id="background-color">
-          <option selected value="#000000">Black</option>
-          <option value="#800000">Maroon</option>
-          <option value="#008000">Green</option>
-          <option value="#808000">Olive</option>
-          <option value="#000080">Navy</option>
-          <option value="#800080">Purple</option>
-          <option value="#008080">Teal</option>
-          <option value="#808080">Gray</option>
-          <option value="#C0C0C0">Silver</option>
-          <option value="#FF0000">Red</option>
-          <option value="#00FF00">Lime</option>
-          <option value="#FFFF00">Yellow</option>
-          <option value="#0000FF">Blue</option>
-          <option value="#FF00FF">Fuchsia</option>
-          <option value="#00FFFF">Aqua</option>
-          <option value="#FFFFFF">White</option>
-        </select>
-      </div>
-      <div class="control">
-        <label for="brightness">Brightness</label>
-        <input type="range" id="brightness" min="-100" max="100" value="0">
-      </div>
-      <div class="control">
-        <label for="gradient-mode">Gradient Mode</label>
-        <select id="gradient-mode">
-          <option value="font-gradient-reset">None</option>
-          <option value="font-gradient-red-blue">Red Blue</option>
-          <option value="font-gradient-green-yellow">Green Yellow</option>
-          <option value="font-gradient-blue-green">Purple Orange</option>
-          <option value="font-gradient-reggae">Reggae</option>
-          <option value="font-gradient-usa">USA</option>
-        </select>
-      </div>
-      <div class="control">
-        <label>
-          <input type="checkbox" id="color-cycle" class="checkbox-accent"> Color Cycling
-        </label>
-        <label>
-          <input type="checkbox" id="color-cycle-bg" class="checkbox-accent"> Back Color Cycling
-        </label>
-      </div>
-      <div class="control">
-        <label>Snapshot</label>
-        <button id="save-ascii">ASCII</button>
-        <button id="save-image">Image</button>
-      </div>
-      <div class="control">
-        <label>Record</label>
-        <button id="record-button">Start Recording</button>
-      </div>
-      <div class="control">
-        <button id="install">Install</button>
+    <div class="top-bar">
+      <div class="top-bar-controls">
+        <div class="control">
+          <label for="font-size">Font Size/Zoom</label>
+          <input type="range" id="font-size" min="4" max="24" value="12">
+        </div>
+        <div class="control">
+          <label for="foreground-color">Foreground</label>
+          <select id="foreground-color">
+            <option selected value="#FFFFFF">White</option>
+            <option value="#000000">Black</option>
+            <option value="#800000">Maroon</option>
+            <option value="#008000">Green</option>
+            <option value="#808000">Olive</option>
+            <option value="#000080">Navy</option>
+            <option value="#800080">Purple</option>
+            <option value="#008080">Teal</option>
+            <option value="#808080">Gray</option>
+            <option value="#C0C0C0">Silver</option>
+            <option value="#FF0000">Red</option>
+            <option value="#00FF00">Lime</option>
+            <option value="#FFFF00">Yellow</option>
+            <option value="#0000FF">Blue</option>
+            <option value="#FF00FF">Fuchsia</option>
+            <option value="#00FFFF">Aqua</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="background-color">Background</label>
+          <select id="background-color">
+            <option selected value="#000000">Black</option>
+            <option value="#800000">Maroon</option>
+            <option value="#008000">Green</option>
+            <option value="#808000">Olive</option>
+            <option value="#000080">Navy</option>
+            <option value="#800080">Purple</option>
+            <option value="#008080">Teal</option>
+            <option value="#808080">Gray</option>
+            <option value="#C0C0C0">Silver</option>
+            <option value="#FF0000">Red</option>
+            <option value="#00FF00">Lime</option>
+            <option value="#FFFF00">Yellow</option>
+            <option value="#0000FF">Blue</option>
+            <option value="#FF00FF">Fuchsia</option>
+            <option value="#00FFFF">Aqua</option>
+            <option value="#FFFFFF">White</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="brightness">Brightness</label>
+          <input type="range" id="brightness" min="-100" max="100" value="0">
+        </div>
+        <div class="control">
+          <label for="gradient-mode">Gradient Mode</label>
+          <select id="gradient-mode">
+            <option value="font-gradient-reset">None</option>
+            <option value="font-gradient-red-blue">Red Blue</option>
+            <option value="font-gradient-green-yellow">Green Yellow</option>
+            <option value="font-gradient-blue-green">Purple Orange</option>
+            <option value="font-gradient-reggae">Reggae</option>
+            <option value="font-gradient-usa">USA</option>
+          </select>
+        </div>
+        <div class="control">
+          <label>
+            <input type="checkbox" id="color-cycle" class="checkbox-accent"> Color Cycling
+          </label>
+          <label>
+            <input type="checkbox" id="color-cycle-bg" class="checkbox-accent"> Back Color Cycling
+          </label>
+        </div>
+        <div class="control">
+          <label>Snapshot</label>
+          <button id="save-ascii">ASCII</button>
+          <button id="save-image">Image</button>
+        </div>
+        <div class="control">
+          <label>Record</label>
+          <button id="record-button">Start Recording</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <button class="top-bar-toggle">&#x25BC;</button>
+    <button class="top-bar-toggle">▼</button>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9P4KP1YMH6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-9P4KP1YMH6');
 </script>
 </body></html>
